@@ -7,9 +7,14 @@ node {
         sh "${mvnHome}/bin/mvn package"
     }
     stage('SonarQ Analysis') {
-        def mvnHome = tool name: 'Maven 3', type: 'maven'
-        withSonarQubeEnv('Sonar-q-server') {
-        sh "${mvnHome}/bin/mvn sonar:sonar"
+        }
+    }
+    stage('SonarQ Check') {
+        }
+    }
+    stage('Deploy to tomcat') {
+        sshagent(['tomcat-dev']) {
+            sh 'scp -o StrictHostKeyChecking=no target/*war ec2-user@172.31.40.111:/opt/tomcat8/webapps/'
         }
     }
 }
