@@ -7,10 +7,11 @@ node {
         sh "${mvnHome}/bin/mvn package"
     }
     stage('SonarQ Analysis') {
-        }
+        echo('1212')
     }
     stage('SonarQ Check') {
-        }
+        echo('1212')
+
     }
     stage('Deploy to tomcat') {
         sshagent(['tomcat-dev']) {
