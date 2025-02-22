@@ -28,6 +28,5 @@ node {
 //             sh "docker build -t duc/demo ."
 //         }
 
-    }
 }
 
