@@ -13,9 +13,21 @@ node {
         echo('1212')
 
     }
+
     stage('Deploy to tomcat') {
-        sshagent(['tomcat-dev']) {
-            sh 'scp -o StrictHostKeyChecking=no target/*war ec2-user@172.31.40.111:/opt/tomcat8/webapps/'
+        sshagent(['sonar-2']) {
+            sh 'ssh -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.40.111/opt/tomcat8/webapps/'
         }
+
+    }
+
+
+
+//     stage('Docker build') {
+//         steps {
+//             sh "docker build -t duc/demo ."
+//         }
+
     }
 }
+
